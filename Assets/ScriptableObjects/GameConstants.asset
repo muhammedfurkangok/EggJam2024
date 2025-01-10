@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9548f3d8dd448a2af754e9fac6308b8, type: 3}
+  m_Name: GameConstants
+  m_EditorClassIdentifier: 
+  playerWalkSpeed: 2
+  playerRunSpeed: 10
+  playerWalkAcceleration: 5
+  playerRunAcceleration: 15
+  playerDeceleration: 20
+  playerWalkingSoundInterval: 0.5
+  playerMinLook: -90
+  playerMaxLook: 90
+  playerLookSensitivity: 10
+  playerInspectSensitivity: 20
+  playerIdleNoiseAmplitude: 0.1
+  playerWalkNoiseAmplitude: 0.75
+  playerRunNoiseAmplitude: 1
+  playerIdleNoiseFrequency: 0.75
+  playerWalkNoiseFrequency: 1.2
+  playerRunNoiseFrequency: 1
+  playerWalkNoiseChangeSpeed: 10
+  playerRunNoiseChangeSpeed: 15
+  grabLayer:
+    serializedVersion: 2
+    m_Bits: 251
+  grabRange: 5
+  grabForce: 10
+  grabAngularForce: 0
+  grabReleaseDeceleration: 5
+  grabItemEnterInspectDuration: 0.1
+  grabItemEnterInspectEase: 2
+  grabItemExitInspectDuration: 0.1
+  grabItemExitInspectEase: 3
+  grabThrowForce: 10
+  grabItemExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  tabletMoveDuration: 0.3
+  tabletMoveUpEase: 2
+  tabletMoveDownEase: 3
+  tabletUpLocalY: 0
+  tabletDownLocalY: -2
+  tabletAlphaDuration: 2
+  tabletAlphaEase: 3
+  grabItemPositionColliderSizeOffset: 1
+  grabItemSnapMaxVelocity: 2
+  grabItemSnapDuration: 0.2
+  grabItemSnapEase: 2
+  grabItemSnapRotationEase: 3
+  snapColor: {r: 0.3932329, g: 0.8018868, b: 0.2004717, a: 0.5803922}
+  snapColorChangeDuration: 0.1
+  snapColorChangeEase: 3
+  doorOpenRotation: {x: 0, y: 90, z: 0}
+  doorOpenDuration: 0.4
+  doorOpenEase: 2
+  doorCloseRotation: {x: 0, y: 0, z: 0}
+  doorCloseDuration: 0.4
+  doorCloseEase: 3
+  playerInteractRange: 5
+  playerInteractLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  transparentColor: {r: 0, g: 0, b: 0, a: 0}

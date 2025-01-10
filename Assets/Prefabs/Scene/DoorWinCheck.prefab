@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2422596828406247852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2437247180372695413}
+  - component: {fileID: 7561857584339396811}
+  m_Layer: 0
+  m_Name: DoorWinCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2437247180372695413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422596828406247852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.6770622, w: 0.73592585}
+  m_LocalPosition: {x: -13.375833, y: 6.9, z: -1.7877426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -85.229}
+--- !u!114 &7561857584339396811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422596828406247852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d3b9a2145b4cf999dcce3f3ab41527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstDoorItemPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  secondDoorItemPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  thirdDoorItemPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  firstDoorParticle: {fileID: 0}
+  secondDoorParticle: {fileID: 0}
+  thirdDoorParticle: {fileID: 0}
+  completionDoor: {fileID: 0}
+  playerCamera: {fileID: 0}
+  blinkAnimator: {fileID: 0}
+  completionDoorMoveDuration: 0.5
+  completionDoorMoveEase: 2
+  playerLookAtDuration: 1
+  playerLookAtEase: 2
+  firstDoorCompleted: 0
+  secondDoorCompleted: 0
+  thirdDoorCompleted: 0
+  isAllDoorsCompleted: 0

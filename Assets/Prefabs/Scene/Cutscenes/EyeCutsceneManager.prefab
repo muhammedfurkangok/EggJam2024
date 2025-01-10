@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3493639691025808353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5508829992398530314}
+  - component: {fileID: 561922391358843163}
+  m_Layer: 0
+  m_Name: EyeCutsceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5508829992398530314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493639691025808353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561922391358843163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493639691025808353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce17786d84164e71ae1b4a77e10bfd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEyeAnimator: {fileID: 0}
+  playerCamera: {fileID: 0}
+  player: {fileID: 0}
+  blinkDuration: 3.5
+  rightLeftLookRotations:
+  - {x: -20, y: 40, z: 0}
+  - {x: 5, y: -60, z: 0}
+  - {x: -10, y: 0, z: 0}
+  - {x: 0, y: -90, z: 0}
+  rightLeftLookDurations:
+  - 2
+  - 4
+  - 4
+  - 2
+  rightLeftLookEases: 04000000040000000400000004000000
+  lookLastWaitDuration: 0
+  tabletUpPosition: 0
+  tabletUpDuration: 1
+  tabletUpEase: 2
+  tabletWaitDuration: 14
+  tabletDownDuration: 1
+  tabletDownEase: 3
+  tabletLastWaitDuration: 0
+  doorLookPos: {fileID: 0}
+  doors:
+  - {fileID: 0}
+  - {fileID: 0}
+  doorsUpPosition: 0
+  doorsUpDuration: 3
+  doorsUpEase: 3
