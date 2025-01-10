@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 
@@ -419,3 +419,5 @@ public interface IPlayerController
     public event Action<bool> Jumped;
     public Vector2 FrameInput { get; }
 }
+
+﻿using UnityEngine;
