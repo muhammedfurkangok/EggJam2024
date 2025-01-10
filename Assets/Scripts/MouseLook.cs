@@ -1,34 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseLookCamera : MonoBehaviour
+public class MoveAroundObject : MonoBehaviour
 {
-    public Transform player;       
-    public float sensitivity = 100f;
-    public float distanceFromPlayer = 3f;
-    public Vector2 rotationLimits = new Vector2(-30f, 60f);
+    [SerializeField]
+    private float _mouseSensitivity = 3.0f;
 
-    private float mouseX;
-    private float mouseY;
+    private float _rotationY;
+    private float _rotationX;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    [SerializeField]
+    private Transform _target;
+
+    [SerializeField]
+    private float _distanceFromTarget = 3.0f;
+
+    private Vector3 _currentRotation;
+    private Vector3 _smoothVelocity = Vector3.zero;
+
+    [SerializeField]
+    private float _smoothTime = 0.2f;
+
+    [SerializeField]
+    private Vector2 _rotationXMinMax = new Vector2(-40, 40);
 
     void Update()
     {
-        // Get mouse input
-        mouseX += Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-        mouseY -= Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
-        // Clamp vertical rotation
-        mouseY = Mathf.Clamp(mouseY, rotationLimits.x, rotationLimits.y);
+        _rotationY += mouseX;
+        _rotationX += mouseY;
 
-        // Rotate the camera around the player
-        transform.position = player.position - transform.forward * distanceFromPlayer;
-        transform.LookAt(player);
+        // Apply clamping for x rotation 
+        _rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
 
-        // Apply rotation
-        transform.rotation = Quaternion.Euler(mouseY, mouseX, 0f);
+        Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
+
+        // Apply damping between rotation changes
+        _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
+        transform.localEulerAngles = _currentRotation;
+
+        // Substract forward vector of the GameObject to point its forward vector to the target
+        transform.position = _target.position - transform.forward * _distanceFromTarget;
     }
 }
