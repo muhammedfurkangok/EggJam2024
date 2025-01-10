@@ -27,5 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/EyeScene_FinalCutscene.unity
     guid: 590d3ec5e0246794daace638f65f85e6
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: fd6c9d067024a964a8b9d28800280151, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a7af6ed562db02b439584cb1cc805654, type: 3}
   m_UseUCBPForAssetBundles: 0
