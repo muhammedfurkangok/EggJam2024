@@ -523,10 +523,10 @@ GameObject:
   - component: {fileID: 1513436460}
   - component: {fileID: 1513436458}
   - component: {fileID: 1513436463}
-  - component: {fileID: 1513436457}
   - component: {fileID: 1513436456}
   - component: {fileID: 1513436455}
   - component: {fileID: 1513436462}
+  - component: {fileID: 1513436464}
   m_Layer: 3
   m_Name: Square_1
   m_TagString: Untagged
@@ -5392,41 +5392,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &1513436457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513436454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b65020822436245b24e27258378041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  SnapInput: 1
-  VerticalDeadZoneThreshold: 0.3
-  HorizontalDeadZoneThreshold: 0.1
-  MaxSpeed: 14
-  Acceleration: 120
-  GroundDeceleration: 60
-  AirDeceleration: 30
-  GroundingForce: -1.5
-  GrounderDistance: 0.05
-  JumpPower: 36
-  MaxFallSpeed: 40
-  FallAcceleration: 110
-  JumpEndEarlyGravityModifier: 3
-  CoyoteTime: 0.15
-  JumpBuffer: 0.2
-  AirJumps: 1
-  DashForce: 15
-  DashCooldown: 0.75
-  controlScheme: 0
-  DashParticles: {fileID: 1513436456}
 --- !u!50 &1513436458
 Rigidbody2D:
   serializedVersion: 5
@@ -5607,6 +5572,41 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.0037037332}
   m_Size: {x: 1, y: 1.0074079}
   m_Direction: 0
+--- !u!114 &1513436464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513436454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf47309deee5cbf45aa25b149d9217f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  SnapInput: 1
+  VerticalDeadZoneThreshold: 0.3
+  HorizontalDeadZoneThreshold: 0.1
+  MaxSpeed: 14
+  Acceleration: 120
+  GroundDeceleration: 60
+  AirDeceleration: 30
+  GroundingForce: -1.5
+  GrounderDistance: 0.05
+  JumpPower: 36
+  MaxFallSpeed: 40
+  FallAcceleration: 110
+  JumpEndEarlyGravityModifier: 3
+  CoyoteTime: 0.15
+  JumpBuffer: 0.2
+  AirJumps: 1
+  DashForce: 15
+  DashCooldown: 0.75
+  controlScheme: 0
+  DashParticles: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
