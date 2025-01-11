@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class PCSequencesManager : MonoBehaviour
 {
     public void LoginButton(string password)
     {
-        if(password == "1234")
+        if (password == "1234")
         {
             Debug.Log("Login successful");
         }
@@ -16,15 +17,16 @@ public class PCSequencesManager : MonoBehaviour
         }
     }
 
-    public void EnterTheFirstGame()
+    public async void EnterTheFirstGame()
     {
+        await UniTask.WaitForSeconds(2f);
         SceneManager.LoadScene("SurvivorsScene");
     }
 
-    public void EnterTheSecondGame()
+    public async void EnterTheSecondGame()
     {
+        await UniTask.WaitForSeconds(2f);
+
         SceneManager.LoadScene("PuzzleScene");
     }
-
-    
 }
