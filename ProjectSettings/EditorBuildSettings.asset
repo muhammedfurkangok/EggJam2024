@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DesktopScene.unity
     guid: 5df274e68e373df4a97e14048420db83
+  - enabled: 1
+    path: Assets/Scenes/SurvivorsScene.unity
+    guid: 773f53e33b691a146b980b80c52576b6
+  - enabled: 1
+    path: Assets/Scenes/PuzzleScene.unity
+    guid: 8f1d4b0e15a19a2468727dae3bb6f8f1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: fd6c9d067024a964a8b9d28800280151, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a7af6ed562db02b439584cb1cc805654, type: 3}
