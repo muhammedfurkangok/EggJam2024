@@ -20,7 +20,6 @@ public class CanBeClicked : MonoBehaviour
 
     private void OnClick()
     {
-        SoundManager.Instance.PlayOneShotSound(SoundType.Click);
         if (!isTabOpen)
         {
             openTab.gameObject.SetActive(true);
@@ -36,15 +35,13 @@ public class CanBeClicked : MonoBehaviour
     {
         if (isTabOpen)
         {
-            SoundManager.Instance.PlayOneShotSound(SoundType.Click);
             Vector2 endPos = button.transform.position;
-            openTab.DOAnchorPos(endPos + offsetForClosePosition , 0.4f).SetEase(Ease.InBack);
+            openTab.DOAnchorPos(endPos + offsetForClosePosition, 0.4f).SetEase(Ease.InBack);
             openTab.DOScale(Vector3.zero, 0.4f).OnComplete(() =>
             {
                 openTab.gameObject.SetActive(false);
                 isTabOpen = false;
             });
-           
         }
     }
 
