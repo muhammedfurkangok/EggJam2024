@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PCSequencesManager : MonoBehaviour
 {
@@ -17,12 +18,12 @@ public class PCSequencesManager : MonoBehaviour
 
     public void EnterTheFirstGame()
     {
-        
+        SceneManager.LoadScene("SurvivorsScene");
     }
 
-    public void EnterThweSecondGame()
+    public void EnterTheSecondGame()
     {
-        
+        SceneManager.LoadScene("PuzzleScene");
     }
 
     
