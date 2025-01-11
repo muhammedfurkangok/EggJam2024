@@ -38,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
     private CapsuleCollider2D _capsuleCollider;
     private bool _isDashing;
     private bool _isMouseOver;
+    public bool canFreeze =true;
 
     private CinemachineImpulseSource _cinemachineImpulseSource;
 
@@ -173,7 +174,6 @@ public class PlayerController2D : MonoBehaviour
         {
             collision.GetComponent<IDamageable>()?.TakeDamage(1);
             ShakeCamera();
-            await FreezeFrame();
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
             GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);
             hitParticle.transform.GetComponent<Animator>().SetTrigger("Slice");
@@ -183,7 +183,9 @@ public class PlayerController2D : MonoBehaviour
             hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             Debug.Log("Enemy hit!");
-
+            if (canFreeze)
+                await FreezeFrame();
+            else return;
         }
     }
 
@@ -200,9 +202,14 @@ public class PlayerController2D : MonoBehaviour
     {
         Time.timeScale = freezeStrenght;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        canFreeze = false;
+
         await UniTask.WaitForSeconds(frameFreezeDuration, ignoreTimeScale: true);
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+
+        await UniTask.Delay(2000);
+        canFreeze = true;
     }
     private void ShakeCamera()
     {
