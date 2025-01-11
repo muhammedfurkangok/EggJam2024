@@ -17,7 +17,6 @@ public class SawAttack : MonoBehaviour
     private void Start()
     {
         spinnigSawProvider = GetComponent<SpinningFormation>();
-        saws = spinnigSawProvider.GetSaws();
     }
 
     async UniTaskVoid SawWeaponAttack() //TODO: ... devamke...

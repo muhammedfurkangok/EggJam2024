@@ -3,8 +3,7 @@
 public class SpinningFormation : MonoBehaviour
 {
     [Header("Formation Settings")]
-    [SerializeField] private float radius = 3f;
-    [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private float radius = 2f;
     [SerializeField] private GameObject objectPrefab;
     [SerializeField] private int initialObjectCount = 1;
     [SerializeField] private float objectScale = 1f;
@@ -29,23 +28,10 @@ public class SpinningFormation : MonoBehaviour
     private void Update()
     {
         // Update rotation
-        currentAngle += rotationSpeed * Time.deltaTime;
+        //currentAngle += rotationSpeed * Time.deltaTime;
 
         // Update positions of all active objects
         UpdateObjectPositions();
-    }
-
-    public GameObject[] GetSaws()
-    {
-        var result = new GameObject[MAX_OBJECTS];
-        for (int i = 0; i<MAX_OBJECTS; i++)
-        {
-            if (spawnedObjects[i] != null)
-            {
-                result[i] = spawnedObjects[i].gameObject;
-            }
-        }
-        return result;
     }
 
     public void AddObject()
@@ -127,9 +113,23 @@ public class SpinningFormation : MonoBehaviour
         }
     }
 
+    private void ShootSaws()
+    {
+        if (spawnedObjects!=null)
+        {
+            for (int i = 0; i < spawnedObjects.Length; i++)
+            {
+                if (spawnedObjects[i] != null)
+                {
+                   
+                }
+            }
+            
+        }
+    }
+
     // Public methods to control the formation
     public void SetRadius(float newRadius) => radius = newRadius;
-    public void SetRotationSpeed(float newSpeed) => rotationSpeed = newSpeed;
     public void SetObjectScale(float newScale)
     {
         objectScale = newScale;

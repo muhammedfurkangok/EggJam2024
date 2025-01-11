@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Unity.Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
@@ -16,20 +18,35 @@ public class PlayerController2D : MonoBehaviour
     [Header("ATTACK")] public bool canAttack = false;
     public GameObject hitParticlePrefab;
     public LayerMask enemyLayer;
-    public Camera shakeCam;
-        
+    public CinemachineCamera shakeCam;
+
     #endregion
+    [Header("CAM SHAKE")]
+    [SerializeField]
+    private Vector3 shakeVelocity = new(0f, -0.3f, 0f);
+
+    [Header("FRAME FREEZE")]
+    [SerializeField]
+    private float frameFreezeDuration = 0.1f;
+    [SerializeField] private float freezeStrenght = 0.1f;
+
+
+    [Header("ANIMATOR")]
+    [SerializeField] private Animator _animator;
 
     private Rigidbody2D _rb;
     private CapsuleCollider2D _capsuleCollider;
     private bool _isDashing;
     private bool _isMouseOver;
-    [SerializeField] private Animator _animator;
+
+    private CinemachineImpulseSource _cinemachineImpulseSource;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+
     }
 
     private void Update()
@@ -150,12 +167,13 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private async void OnTriggerEnter2D(Collider2D collision)
     {
         if (_isDashing && canAttack && enemyLayer == (enemyLayer | (1 << collision.gameObject.layer)))
         {
-            shakeCam.transform.DOShakeRotation(0.5f, 20f, 10, 90f, false);
-            
+            collision.GetComponent<IDamageable>()?.TakeDamage(1);
+            ShakeCamera();
+            await FreezeFrame();
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
             GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);
             hitParticle.transform.GetComponent<Animator>().SetTrigger("Slice");
@@ -166,7 +184,30 @@ public class PlayerController2D : MonoBehaviour
 
             Debug.Log("Enemy hit!");
 
-            canAttack = false;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        canAttack = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canAttack = true;
+    }
+
+    private async UniTask FreezeFrame()
+    {
+        Time.timeScale = freezeStrenght;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        await UniTask.WaitForSeconds(frameFreezeDuration, ignoreTimeScale: true);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+    }
+    private void ShakeCamera()
+    {
+        _cinemachineImpulseSource.DefaultVelocity = shakeVelocity;
+        _cinemachineImpulseSource.GenerateImpulse();
+    }
+
 }
