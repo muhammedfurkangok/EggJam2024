@@ -191,10 +191,11 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        canAttack = false;
+       if(other.gameObject.layer == enemyLayer) canAttack = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.layer == enemyLayer)
         canAttack = true;
     }
 

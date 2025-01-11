@@ -8,7 +8,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] private Animator _animator;
 
+    [Space]
+
+    [SerializeField] Transform shadow;
+
     public float speed = 2f;
+
+    private bool isAlive = true;
+
+    private void Awake()
+    {
+        Health health = GetComponent<Health>();
+        health.OnDeath += Dead;
+    }
 
     private async void Start()
     {
@@ -17,7 +29,7 @@ public class Enemy : MonoBehaviour
         agent.speed = speed;
         _animator.SetBool("isWalking", true);
 
-        while (true)
+        while (true && isAlive)
         {
             await UniTask.WaitForSeconds(0.2f);
             agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
@@ -42,5 +54,13 @@ public class Enemy : MonoBehaviour
         _animator.SetBool("isWalking", false);
         _animator.SetTrigger("Die");
         agent.isStopped = true;
+        isAlive = false;
+        ShadowFixOnDeath();
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+    private void ShadowFixOnDeath()
+    {
+        shadow.gameObject.SetActive(false); // or strecth the shadow to accomodate.
     }
 }
