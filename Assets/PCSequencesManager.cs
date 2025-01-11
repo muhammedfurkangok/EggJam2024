@@ -15,5 +15,15 @@ public class PCSequencesManager : MonoBehaviour
         }
     }
 
+    public void EnterTheFirstGame()
+    {
+        
+    }
+
+    public void EnterThweSecondGame()
+    {
+        
+    }
+
     
 }

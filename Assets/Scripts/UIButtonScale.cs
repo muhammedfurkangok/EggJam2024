@@ -26,6 +26,7 @@ public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        CursorManager.Instance.SetCursor(CursorManager.Instance.hoverCursor, Vector2.zero);
         transform.DOLocalMove(new Vector2(transform.localPosition.x, originalPosition.y) + hoverOffset, hoverDuration)
             .SetEase(Ease.OutQuad);
         transform.localScale = originalScale * 1.1f;
@@ -33,6 +34,7 @@ public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        CursorManager.Instance.SetCursor(CursorManager.Instance.defaultCursor, Vector2.zero);
         if(isDragging)
         {
             return;
