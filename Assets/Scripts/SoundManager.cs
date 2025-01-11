@@ -5,6 +5,7 @@ using UnityEngine;
 public enum SoundType
 {
     Click,
+    Key,
 }
 
 [Serializable]
@@ -17,11 +18,14 @@ public class GameSound
 
 public class SoundManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private AudioSource mainAudioSource;
+    [Header("References")] [SerializeField]
+    private AudioSource mainAudioSource;
+
     [SerializeField] private List<GameSound> gameSounds = new();
+    [SerializeField] private List<GameSound> randomSounds = new();
 
     public static SoundManager Instance;
+
     public void Awake()
     {
         if (Instance == null) Instance = this;
@@ -40,6 +44,24 @@ public class SoundManager : MonoBehaviour
         else
         {
             mainAudioSource.PlayOneShot(gameSound.clip);
+        }
+    }
+
+    public void PlayRandomSoundInArray(SoundType key)
+    {
+        var gameSound = randomSounds.Find(x => x.key == key);
+        gameSound.externalAudioSource.PlayOneShot(gameSound.clip);
+    }
+
+    private void Update()
+    {
+        if (Input.anyKeyDown && !Input.GetMouseButtonDown(0))
+        {
+            PlayRandomSoundInArray(SoundType.Key);
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
+            PlayOneShotSound(SoundType.Click);
         }
     }
 }
