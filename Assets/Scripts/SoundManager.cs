@@ -6,6 +6,8 @@ public enum SoundType
 {
     Click,
     Key,
+    Error,
+    IncorretPassword,
 }
 
 [Serializable]
@@ -63,5 +65,15 @@ public class SoundManager : MonoBehaviour
         {
             PlayOneShotSound(SoundType.Click);
         }
+    }
+    
+    public void PlayErrorSound()
+    {
+        PlayOneShotSound(SoundType.Error);
+    }
+    
+    public void PlayIncorrectPasswordSound()
+    {
+        PlayOneShotSound(SoundType.IncorretPassword);
     }
 }

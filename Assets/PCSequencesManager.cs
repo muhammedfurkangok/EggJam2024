@@ -8,20 +8,23 @@ using UnityEngine.UI;
 public class PCSequencesManager : MonoBehaviour
 {
     public Image firstGameLoadingScene;
+    public Image firstGameLoadingScene2;
     public Image sceondGameLoadingScene;
     public bool isLoggedIn = false;
 
     public GameObject lockedScreen;
-    
+
 
     public void SetFirstGameFullScreenSize()
     {
-        RectTransform rt = firstGameLoadingScene.rectTransform;
-        rt.anchorMin = Vector2.zero;
-        rt.anchorMax = Vector2.one;
-        rt.offsetMin = Vector2.zero;
-        rt.offsetMax = Vector2.zero;
-        rt.DOScale(new Vector3(1, 1, 1), 1f);
+        RectTransform rt2 = firstGameLoadingScene2.rectTransform;
+        rt2.DOSizeDelta(new Vector2(2000, 1100), 0.5f).SetEase(Ease.OutQuad);
+
+        foreach (RectTransform child in rt2)
+        {
+            
+            child.DOSizeDelta(new Vector2(child.rect.width + 100, child.rect.height + 100), 0.5f).SetEase(Ease.OutQuad);
+        }
     }
 
     public void SetsSecondGameFullScreenSize()
