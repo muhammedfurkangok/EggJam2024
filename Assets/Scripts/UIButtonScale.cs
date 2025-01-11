@@ -2,40 +2,45 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler,
-    IEndDragHandler
+public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 originalScale;
     private Vector2 originalPosition;
     private RectTransform rectTransform;
     private Canvas canvas;
     private CanBeClicked canBeClicked;
+    private bool isDragging;
 
     [SerializeField] private Vector2 hoverOffset = new Vector2(0, 20f);
     [SerializeField] private float hoverDuration = 0.3f;
 
     private void Start()
     {
+       
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         originalScale = transform.localScale;
+        originalPosition = transform.localPosition;
         canBeClicked = GetComponent<CanBeClicked>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        originalPosition = transform.localPosition;
-        transform.DOLocalMove(originalPosition + hoverOffset, hoverDuration).SetEase(Ease.OutQuad);
+        transform.DOLocalMove(new Vector2(transform.localPosition.x, originalPosition.y) + hoverOffset, hoverDuration)
+            .SetEase(Ease.OutQuad);
         transform.localScale = originalScale * 1.1f;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        originalPosition = transform.localPosition;
-        transform.DOLocalMove(originalPosition - hoverOffset, hoverDuration).SetEase(Ease.InQuad);
+        if(isDragging)
+        {
+            return;
+        }
+        transform.DOLocalMove(new Vector2(transform.localPosition.x, originalPosition.y), hoverDuration)
+            .SetEase(Ease.InQuad);
         transform.localScale = originalScale;
     }
-
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -44,6 +49,7 @@ public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             canBeClicked.isTabOpen = true;
         }
 
+        isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -57,5 +63,14 @@ public class UIButtonScale : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             canBeClicked.isTabOpen = false;
         }
+        if (eventData.pointerDrag != null)
+        {
+            RectTransform dropArea = eventData.pointerEnter.GetComponent<RectTransform>();
+            if (dropArea.CompareTag("App") && dropArea != rectTransform)
+            {
+                Debug.Log("Dropped on another object, perform the action.");
+            }
+        }
     }
+    
 }
