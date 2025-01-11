@@ -7,6 +7,7 @@ public class CanBeClicked : MonoBehaviour
 {
     private Button button;
     [SerializeField] private Button closeTab;
+    [SerializeField] private Button closeTab2;
     [SerializeField] private RectTransform openTab;
     [SerializeField] private Vector2 offsetForClosePosition;
     public bool isTabOpen = false;
@@ -16,6 +17,10 @@ public class CanBeClicked : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
         closeTab.onClick.AddListener(OnCloseTab);
+        if(closeTab2 != null)
+        {
+            closeTab2.onClick.AddListener(OnCloseTab);
+        }
     }
 
     private void OnClick()
@@ -49,5 +54,9 @@ public class CanBeClicked : MonoBehaviour
     {
         button.onClick.RemoveListener(OnClick);
         closeTab.onClick.RemoveListener(OnCloseTab);
+        if(closeTab2 != null)
+        {
+            closeTab2.onClick.RemoveListener(OnCloseTab);
+        }
     }
 }
