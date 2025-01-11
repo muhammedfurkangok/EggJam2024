@@ -402,5 +402,21 @@ public class PlayerControllerYeni: MonoBehaviour, IPlayerController
     private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
 }
 
+public struct FrameInput
+{
+    public bool JumpDown;
+    public bool JumpHeld;
+    public bool DashDown;
+    public bool DropHeld;
+    public bool ShootHeld;
+    public Vector2 Move;
+}
 
+public interface IPlayerController
+{
+    public event Action<bool, float> GroundedChanged;
+
+    public event Action<bool> Jumped;
+    public Vector2 FrameInput { get; }
+}
 
