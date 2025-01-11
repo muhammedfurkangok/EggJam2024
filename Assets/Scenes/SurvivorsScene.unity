@@ -23537,7 +23537,7 @@ MonoBehaviour:
     m_Bits: 64
   shakeCam: {fileID: 1985651296}
   shakeVelocity: {x: 0, y: -0.075, z: 0}
-  frameFreezeDuration: 0.67
+  frameFreezeDuration: 0.1
   freezeStrenght: 0.1
   _animator: {fileID: 613076956}
   canFreeze: 1
