@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PCSequencesManager : MonoBehaviour
@@ -13,4 +14,10 @@ public class PCSequencesManager : MonoBehaviour
             Debug.Log("Login failed");
         }
     }
+    
+    public void OnClickButton()
+    {
+        SoundManager.Instance.PlayOneShotSound(SoundType.Click);
+    }
+    
 }
