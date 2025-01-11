@@ -19,8 +19,6 @@ public class PlayerAudio : MonoBehaviour
         //ph = GetComponent<PlayerHealth>();
         //ph.OnPlayerDeath += PlayDeathAudio;
         //ph.OnPlayerHit += PlayImpactAudio;
-        pc.GroundedChanged += PlayFootstepAudio;
-        pc.Jumped += PlayFootstepAudio;
     }
 
     void PlayDeathAudio()
