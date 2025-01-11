@@ -1,145 +1,172 @@
 ﻿using System;
-using UnityEditor.ShaderGraph;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
-
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
 public class PlayerController2D : MonoBehaviour
 {
     #region Stats
-    [Header("LAYERS")]
-    [Tooltip("Set this to the layer your player is on")]
-    public LayerMask PlayerLayer;
 
-    [Header("INPUT")]
-    [Tooltip("Makes all Input snap to an integer. Prevents gamepads from walking slowly. Recommended value is true to ensure gamepad/keybaord parity.")]
-    public bool SnapInput = true;
+    [Header("MOVEMENT")] public float moveSpeed = 5f;
+    public float stopDistance = 0.1f;
+    public float dashSpeed = 20f;
+    public float maxDashRange = 5f; // Dash için max mesafe
 
-    [Tooltip("Minimum input required before you mount a ladder or climb a ledge. Avoids unwanted climbing using controllers"), Range(0.01f, 0.99f)]
-    public float VerticalDeadZoneThreshold = 0.3f;
-
-    [Tooltip("Minimum input required before a left or right is recognized. Avoids drifting with sticky controllers"), Range(0.01f, 0.99f)]
-    public float HorizontalDeadZoneThreshold = 0.1f;
-
-    [Header("MOVEMENT")]
-    [Tooltip("The top horizontal movement speed")]
-    public float MaxSpeed = 14;
-
-    [Tooltip("The player's capacity to gain horizontal speed")]
-    public float Acceleration = 120;
-
-    [Tooltip("The pace at which the player comes to a stop")]
-    public float GroundDeceleration = 60;
-
+    [Header("ATTACK")] public bool canAttack = false;
+    public GameObject hitParticlePrefab;
+    public LayerMask enemyLayer;
+    public Camera shakeCam;
+        
     #endregion
+
     private Rigidbody2D _rb;
-    private CapsuleCollider2D _col;
-    private FrameInput2D _frameInput;
-    private Vector2 _frameVelocity;
-    private bool _cachedQueryStartInColliders;
-    private Controls _controls;
+    private CapsuleCollider2D _capsuleCollider;
+    private bool _isDashing;
+    private bool _isMouseOver;
+    [SerializeField] private Animator _animator;
 
-    [SerializeField] private ParticleSystem DashParticles;
-
-    #region Interface
-
-    public Vector2 FrameInput => _frameInput.Move;
-
-    public void Reset()
-    {
-        _rb.linearVelocity = new Vector2(0, 0);
-    }
-
-    #endregion
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _col = GetComponent<CapsuleCollider2D>();
-        _controls = new Controls();
-        _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
-    }
-    private void OnEnable()
-    {
-        _controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _controls.Disable();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Update()
     {
-        GatherInput();
-    }
-
-    private void GatherInput()
-    {
-
-        _frameInput = new FrameInput2D
+        // Mouse'a tıklanırsa dash yap
+        if (Input.GetMouseButtonDown(0) && !_isDashing && !_isMouseOver)
         {
-            Move = _controls._2D.Move.ReadValue<Vector2>()
-        };
-        if (SnapInput)
-        {
-            _frameInput.Move.x = Mathf.Abs(_frameInput.Move.x) < HorizontalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.x);
-            _frameInput.Move.y = Mathf.Abs(_frameInput.Move.y) < VerticalDeadZoneThreshold ? 0 : Mathf.Sign(_frameInput.Move.y);
+            Dash();
         }
-    }
 
+        // Mouse'un karakterin üstünde olup olmadığını kontrol et
+        CheckMouseOver();
+
+        // Karakterin yönünü kontrol et (Flip)
+        HandleFlip();
+    }
 
     private void FixedUpdate()
     {
-        _frameVelocity = _rb.linearVelocity;
+        if (_isDashing || _isMouseOver) return;
 
-        CheckCollisions();
-        HandleDirection();
-        ApplyMovement();
+        // Karakteri mouse pozisyonuna doğru hareket ettir
+        MoveTowardsMouse();
     }
 
-    #region Collisions
-
-    private void CheckCollisions()
+    private void MoveTowardsMouse()
     {
-        Physics2D.queriesStartInColliders = false;
-        Physics2D.queriesStartInColliders = _cachedQueryStartInColliders;
-    }
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distanceToTarget = Vector2.Distance(transform.position, targetPosition);
 
-    #endregion
-
-    #region Horizontal
-
-    private void HandleDirection()
-    {
-        bool isMaxX() => Mathf.Abs(_frameVelocity.x) > MaxSpeed && Mathf.Sign(_frameInput.Move.x) == Mathf.Sign(_frameVelocity.x);
-        bool isMaxY() => Mathf.Abs(_frameVelocity.y) > MaxSpeed && Mathf.Sign(_frameInput.Move.y) == Mathf.Sign(_frameVelocity.y);
-
-        if (_frameInput.Move.x == 0 || isMaxX())
+        if (distanceToTarget > stopDistance)
         {
-            var deceleration = GroundDeceleration;
-            _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+            Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+            _rb.linearVelocity = direction * moveSpeed;
+            _animator.SetBool("isWalking", true);
         }
         else
         {
-            _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * MaxSpeed, Acceleration * Time.fixedDeltaTime);
-        }
-
-        if (_frameInput.Move.y == 0 || isMaxY())
-        {
-            var deceleration = GroundDeceleration;
-            _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, 0, deceleration * Time.fixedDeltaTime);
-        }
-        else
-        {
-            _frameVelocity.y = Mathf.MoveTowards(_frameVelocity.y, _frameInput.Move.y * MaxSpeed, Acceleration * Time.fixedDeltaTime);
+            _rb.linearVelocity = Vector2.zero;
+            _animator.SetBool("isWalking", false);
         }
     }
 
-    #endregion
+    private void Dash()
+    {
+        _isDashing = true;
+        canAttack = true; // Dash sırasında saldırı aktif
 
-    private void ApplyMovement() => _rb.linearVelocity = _frameVelocity;
-}
-public struct FrameInput2D
-{
-    public Vector2 Move;
+        // Mouse pozisyonunu al ve dash yönünü hesapla
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dashDirection = (mousePosition - (Vector2)transform.position).normalized;
+
+        // Dash mesafesini hesapla (maxDashRange kadar sınırlı)
+        float dashDistance = maxDashRange;
+
+        // Dash pozisyonunu belirle
+        Vector2 dashTargetPosition = (Vector2)transform.position + dashDirection * dashDistance;
+
+        // Dash yap
+        StartCoroutine(DashCoroutine(dashTargetPosition));
+    }
+
+    private IEnumerator DashCoroutine(Vector2 targetPosition)
+    {
+        float dashDuration = Vector2.Distance(transform.position, targetPosition) / dashSpeed;
+        Vector2 startPosition = transform.position;
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < dashDuration)
+        {
+            _rb.MovePosition(Vector2.Lerp(startPosition, targetPosition, elapsedTime / dashDuration));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _rb.MovePosition(targetPosition);
+        StopDash();
+    }
+
+    private void StopDash()
+    {
+        _isDashing = false;
+        _rb.linearVelocity = Vector2.zero;
+        canAttack = false; 
+    }
+
+    private void CheckMouseOver()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (_capsuleCollider.OverlapPoint(mousePos))
+        {
+            _isMouseOver = true;
+            _rb.linearVelocity = Vector2.zero;
+            _animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            _isMouseOver = false;
+        }
+    }
+
+    private void HandleFlip()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Eğer mouse karakterin solundaysa flip yap
+        if (mousePosition.x < transform.position.x && transform.localScale.x > 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y,
+                transform.localScale.z);
+        }
+        else if (mousePosition.x > transform.position.x && transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y,
+                transform.localScale.z);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_isDashing && canAttack && enemyLayer == (enemyLayer | (1 << collision.gameObject.layer)))
+        {
+            shakeCam.transform.DOShakeRotation(0.5f, 20f, 10, 90f, false);
+            
+            Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+            GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);
+            hitParticle.transform.GetComponent<Animator>().SetTrigger("Slice");
+            Destroy( hitParticle, 0.58f);
+
+            float angle = Mathf.Atan2(hitDirection.y, hitDirection.x) * Mathf.Rad2Deg;
+            hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+            Debug.Log("Enemy hit!");
+
+            canAttack = false;
+        }
+    }
 }
