@@ -4,6 +4,8 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
 public class PlayerController2D : MonoBehaviour
@@ -17,6 +19,7 @@ public class PlayerController2D : MonoBehaviour
 
     [Header("ATTACK")] public bool canAttack = false;
     public GameObject hitParticlePrefab;
+    public GameObject bloodParticlePrefab;
     public LayerMask enemyLayer;
     public CinemachineCamera shakeCam;
     public int dmg = 1;
@@ -32,6 +35,12 @@ public class PlayerController2D : MonoBehaviour
 
 
     [Header("ANIMATOR")] [SerializeField] private Animator _animator;
+
+    [Header("VOLUME")][SerializeField] private Volume Volume;
+
+    [Header("CHROMATIC ABER.")]
+    [SerializeField] private float duration = 0.1f;
+
 
     private Rigidbody2D _rb;
     [SerializeField]private CapsuleCollider2D _capsuleCollider;
@@ -179,13 +188,21 @@ public class PlayerController2D : MonoBehaviour
         {
             collision.GetComponent<IDamageable>()?.TakeDamage(dmg);
             ShakeCamera();
+            Aberrate();
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+
             GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);
             hitParticle.transform.GetComponent<Animator>().SetTrigger("Slice");
+
+            GameObject bloodParticle = Instantiate(bloodParticlePrefab, collision.transform.position + new Vector3(0.125f, 0.125f, 0f), Quaternion.identity);
+            bloodParticle.transform.GetComponent<Animator>().SetTrigger("bleedTrigger");
+
             Destroy(hitParticle, 0.58f);
+            Destroy(bloodParticle, 0.6f);
 
             float angle = Mathf.Atan2(hitDirection.y, hitDirection.x) * Mathf.Rad2Deg;
             hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            bloodParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             Debug.Log("Enemy hit!");
             if (canFreeze)
@@ -223,5 +240,14 @@ public class PlayerController2D : MonoBehaviour
     {
         _cinemachineImpulseSource.DefaultVelocity = shakeVelocity;
         _cinemachineImpulseSource.GenerateImpulse();
+    }
+
+    private void Aberrate()
+    {
+        Volume.sharedProfile.TryGet<ChromaticAberration>(out var component);
+        DOTween.To(() => component.intensity.value, x => component.intensity.value = x, 1f, duration/2).OnComplete(() =>
+        {
+            DOTween.To(() => component.intensity.value, x => component.intensity.value = x, 0f, duration/2);
+        });
     }
 }
