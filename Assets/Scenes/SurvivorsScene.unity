@@ -12579,7 +12579,7 @@ MonoBehaviour:
   - {fileID: 191943627}
   spawnRate: 2
   spawnRateDecrement: 0.1
-  minSpawnRate: 0.5
+  minSpawnRate: 1.18
   player: {fileID: 1513436461}
   sequenceManagerForSurvivors: {fileID: 616851020}
 --- !u!4 &212902302
@@ -20984,7 +20984,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Time: 2
+  m_Time: 1.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -25099,7 +25099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1991401540
 MonoBehaviour:
   m_ObjectHideFlags: 0
