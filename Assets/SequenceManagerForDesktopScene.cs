@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SequenceManagerForDesktopScene : MonoBehaviour
 {
-  public CanvasGroup canvasGroup;
+    public CanvasGroup canvasGroup;
 
-  private void Start()
-  {
-    canvasGroup.DOFade( 0, 2.5f ).OnComplete( () =>
+    private void Start()
     {
-      canvasGroup.interactable = false;
-      canvasGroup.blocksRaycasts = false;
-    } );
-  }
+        canvasGroup.DOFade(0, 3f).OnComplete(() =>
+        {
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+        });
+    }
 }

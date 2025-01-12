@@ -31,7 +31,7 @@ public class PCSequencesManager : MonoBehaviour
 
     public async void SetsSecondGameFullScreenSize()
     {
-        RectTransform rt2 = firstGameLoadingScene2.rectTransform;
+        RectTransform rt2 = sceondGameLoadingScene.rectTransform;
         rt2.DOSizeDelta(new Vector2(4000, 3000), 0.5f).SetEase(Ease.OutQuad);
 
         foreach (RectTransform child in rt2)
@@ -40,6 +40,6 @@ public class PCSequencesManager : MonoBehaviour
         }
 
         await UniTask.WaitForSeconds(0.5f);
-        SceneManager.LoadScene("SurvivorsScene");
+        SceneManager.LoadScene("PuzzleScene");
     }
 }
