@@ -2,11 +2,14 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LastSceneCatSceneManager : MonoBehaviour
 {
     public TextMeshProUGUI questText;
     public CanvasGroup loadingScreen;
+    public GameObject setactiveObje;
+    public Image ui;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,11 +18,12 @@ public class LastSceneCatSceneManager : MonoBehaviour
             questText.color = Color.green;
             loadingScreen.DOFade(1, 3f).OnComplete(() =>
             {
+                ui.gameObject.SetActive(true);
+                setactiveObje.SetActive(false);
                 loadingScreen.gameObject.SetActive(true);
                 loadingScreen.interactable = true;
                 loadingScreen.blocksRaycasts = true;
             });
-           
         }
     }
 
