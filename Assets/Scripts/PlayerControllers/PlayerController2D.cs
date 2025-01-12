@@ -41,6 +41,9 @@ public class PlayerController2D : MonoBehaviour
     [Header("CHROMATIC ABER.")]
     [SerializeField] private float duration = 0.1f;
 
+    [Header("LINERENDERER")]
+    [SerializeField] private TrailRenderer trailRenderer;
+
 
     private Rigidbody2D _rb;
     [SerializeField]private CapsuleCollider2D _capsuleCollider;
@@ -58,6 +61,10 @@ public class PlayerController2D : MonoBehaviour
         _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
+    private void Start()
+    {
+        trailRenderer.emitting = false;
+    }
 
     private void Update()
     {
@@ -110,9 +117,10 @@ public class PlayerController2D : MonoBehaviour
     {
         _isDashing = true;
         canAttack = true; // Dash sırasında saldırı aktif
+        trailRenderer.emitting = true;
 
-        // Mouse pozisyonunu al ve dash yönünü hesapla
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      // Mouse pozisyonunu al ve dash yönünü hesapla
+      Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dashDirection = (mousePosition - (Vector2)transform.position).normalized;
 
         // Dash mesafesini hesapla (maxDashRange kadar sınırlı)
@@ -148,6 +156,7 @@ public class PlayerController2D : MonoBehaviour
         _isDashing = false;
         _rb.linearVelocity = Vector2.zero;
         canAttack = false;
+        trailRenderer.emitting = false;
     }
 
     private void CheckMouseOver()
