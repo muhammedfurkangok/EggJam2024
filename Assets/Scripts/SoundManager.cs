@@ -51,6 +51,22 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayOneShotSound(SoundType key, float volume)
+    {
+        var gameSound = gameSounds.Find(x => x.key == key);
+
+        if (gameSound.externalAudioSource != null)
+        {
+            if (gameSound.externalAudioSource.isPlaying) return;
+            gameSound.externalAudioSource.PlayOneShot(gameSound.clip, volume);
+        }
+
+        else
+        {
+            mainAudioSource.PlayOneShot(gameSound.clip, volume);
+        }
+    }
+
     public void PlayRandomSoundInArray(SoundType key)
     {
         var gameSound = randomSounds.Find(x => x.key == key);

@@ -12,6 +12,8 @@ public class SequenceManagerForSurvivors : MonoBehaviour
     public Image errorScreen;
     public PlayerController2D playerController2D;
 
+    public System.Action OnErrorGlitch;
+
     private void Start()
     {
         canvasGroup.DOFade(0, 2.5f).OnComplete(() =>
@@ -39,6 +41,7 @@ public class SequenceManagerForSurvivors : MonoBehaviour
 
     public void GiveErrorGlitch()
     {
+        OnErrorGlitch?.Invoke();
         SoundManager.Instance.PlayErrorSound();
         errorScreen.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f)
             .OnComplete(() =>

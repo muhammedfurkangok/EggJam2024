@@ -12581,6 +12581,7 @@ MonoBehaviour:
   spawnRateDecrement: 0.1
   minSpawnRate: 0.5
   player: {fileID: 1513436461}
+  sequenceManagerForSurvivors: {fileID: 616851020}
 --- !u!4 &212902302
 Transform:
   m_ObjectHideFlags: 0
@@ -12805,6 +12806,10 @@ PrefabInstance:
       propertyPath: gameSounds.Array.data[4].clip
       value: 
       objectReference: {fileID: 8300000, guid: 2e5a4ec9c62788d41be5e6a626d33317, type: 3}
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.data[3].externalAudioSource
+      value: 
+      objectReference: {fileID: 1064218171}
     - target: {fileID: 6502845038372227220, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -18079,6 +18084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1064218169}
   - component: {fileID: 1064218170}
+  - component: {fileID: 1064218171}
   m_Layer: 0
   m_Name: -ORIGIN-
   m_TagString: Untagged
@@ -18147,6 +18153,103 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 22, y: 13}
   m_EdgeRadius: 0
+--- !u!82 &1064218171
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064218168}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1066594982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4551408364546543417, guid: adca57a73a2c1a34a85c835c616caace, type: 3}
@@ -20654,7 +20757,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20674,7 +20777,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 24
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -20961,7 +21064,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.61
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -21338,14 +21441,14 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
-    angle: 25
+    type: 4
+    angle: 7.5
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: -90, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -21425,7 +21528,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -21482,7 +21585,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 0
       mode: 0
       spread: 0
       speed:
@@ -21539,12 +21642,12 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -21597,7 +21700,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 30
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -25520,6 +25623,7 @@ MonoBehaviour:
   duration: 0.2
   _capsuleCollider: {fileID: 1513436463}
   canFreeze: 1
+  canPlaySlice: 1
   isGlitch: 0
 --- !u!50 &1513436458
 Rigidbody2D:

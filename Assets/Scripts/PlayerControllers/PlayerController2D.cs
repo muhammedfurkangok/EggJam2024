@@ -47,6 +47,7 @@ public class PlayerController2D : MonoBehaviour
     private bool _isDashing;
     private bool _isMouseOver;
     public bool canFreeze = true;
+    public bool canPlaySlice = true; 
     public bool isGlitch = false;
     private CinemachineImpulseSource _cinemachineImpulseSource;
 
@@ -204,7 +205,7 @@ public class PlayerController2D : MonoBehaviour
             hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             bloodParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            PlaySliceSound();
+            if(canPlaySlice) await PlaySliceSound();
 
             Debug.Log("Enemy hit!");
             if (canFreeze)
@@ -244,9 +245,12 @@ public class PlayerController2D : MonoBehaviour
         _cinemachineImpulseSource.GenerateImpulse();
     }
 
-    private void PlaySliceSound()
+    private async UniTask PlaySliceSound()
     {
+        canPlaySlice = false;
         SoundManager.Instance.PlayOneShotSound(SoundType.Slice);
+        await UniTask.Delay(1000);
+        canPlaySlice = true;
     }
     private void Aberrate()
     {

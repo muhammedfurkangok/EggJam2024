@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
         agent.isStopped = true;
         agent.enabled = false;
         isAlive = false;
+        SoundManager.Instance.PlayOneShotSound(SoundType.ZombieDeath, 0.5f);
         ShadowFixOnDeath();
         GetComponent<Collider2D>().enabled = false;
     }
