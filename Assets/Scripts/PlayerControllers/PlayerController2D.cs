@@ -21,25 +21,23 @@ public class PlayerController2D : MonoBehaviour
     public CinemachineCamera shakeCam;
 
     #endregion
-    [Header("CAM SHAKE")]
-    [SerializeField]
-    private Vector3 shakeVelocity = new(0f, -0.3f, 0f);
 
-    [Header("FRAME FREEZE")]
-    [SerializeField]
+    [Header("CAM SHAKE")] [SerializeField] private Vector3 shakeVelocity = new(0f, -0.3f, 0f);
+
+    [Header("FRAME FREEZE")] [SerializeField]
     private float frameFreezeDuration = 0.1f;
+
     [SerializeField] private float freezeStrenght = 0.1f;
 
 
-    [Header("ANIMATOR")]
-    [SerializeField] private Animator _animator;
+    [Header("ANIMATOR")] [SerializeField] private Animator _animator;
 
     private Rigidbody2D _rb;
     private CapsuleCollider2D _capsuleCollider;
     private bool _isDashing;
     private bool _isMouseOver;
-    public bool canFreeze =true;
-
+    public bool canFreeze = true;
+    public bool isGlitch = false;
     private CinemachineImpulseSource _cinemachineImpulseSource;
 
     private void Awake()
@@ -47,11 +45,15 @@ public class PlayerController2D : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _capsuleCollider = GetComponent<CapsuleCollider2D>();
         _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
-
     }
+
 
     private void Update()
     {
+        if (isGlitch)
+            return;
+
+
         // Mouse'a tıklanırsa dash yap
         if (Input.GetMouseButtonDown(0) && !_isDashing && !_isMouseOver)
         {
@@ -67,6 +69,8 @@ public class PlayerController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isGlitch)
+            return;
         if (_isDashing || _isMouseOver) return;
 
         // Karakteri mouse pozisyonuna doğru hareket ettir
@@ -132,7 +136,7 @@ public class PlayerController2D : MonoBehaviour
     {
         _isDashing = false;
         _rb.linearVelocity = Vector2.zero;
-        canAttack = false; 
+        canAttack = false;
     }
 
     private void CheckMouseOver()
@@ -177,7 +181,7 @@ public class PlayerController2D : MonoBehaviour
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
             GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);
             hitParticle.transform.GetComponent<Animator>().SetTrigger("Slice");
-            Destroy( hitParticle, 0.58f);
+            Destroy(hitParticle, 0.58f);
 
             float angle = Mathf.Atan2(hitDirection.y, hitDirection.x) * Mathf.Rad2Deg;
             hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
@@ -191,12 +195,13 @@ public class PlayerController2D : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-       if(other.gameObject.layer == enemyLayer) canAttack = false;
+        if (other.gameObject.layer == enemyLayer) canAttack = false;
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == enemyLayer)
-        canAttack = true;
+            canAttack = true;
     }
 
     private async UniTask FreezeFrame()
@@ -212,10 +217,10 @@ public class PlayerController2D : MonoBehaviour
         await UniTask.Delay(2000);
         canFreeze = true;
     }
+
     private void ShakeCamera()
     {
         _cinemachineImpulseSource.DefaultVelocity = shakeVelocity;
         _cinemachineImpulseSource.GenerateImpulse();
     }
-
 }
