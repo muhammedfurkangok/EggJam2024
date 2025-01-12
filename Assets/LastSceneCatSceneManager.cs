@@ -1,26 +1,23 @@
-using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LastSceneCatSceneManager : MonoBehaviour
 {
     public TextMeshProUGUI questText;
     public CanvasGroup loadingScreen;
-    public GameObject setactiveObje;
-    public Image ui;
 
     private void OnTriggerEnter(Collider other)
     {
+        SeccesefulFound();
         if (other.CompareTag("Player"))
         {
+            loadingScreen.gameObject.SetActive(true);
             questText.color = Color.green;
             loadingScreen.DOFade(1, 3f).OnComplete(() =>
             {
-                ui.gameObject.SetActive(true);
-                setactiveObje.SetActive(false);
-                loadingScreen.gameObject.SetActive(true);
+                SceneManager.LoadScene("LastScene");
                 loadingScreen.interactable = true;
                 loadingScreen.blocksRaycasts = true;
             });
