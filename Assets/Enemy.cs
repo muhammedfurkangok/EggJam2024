@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,6 +21,12 @@ public class Enemy : MonoBehaviour
     {
         Health health = GetComponent<Health>();
         health.OnDeath += Dead;
+    }
+
+    private void OnGlitch()
+    {
+        agent.isStopped = true;
+        _animator.enabled = false;
     }
 
     private async void Start()
@@ -63,4 +70,6 @@ public class Enemy : MonoBehaviour
     {
         shadow.gameObject.SetActive(false); // or strecth the shadow to accomodate.
     }
+
+  
 }

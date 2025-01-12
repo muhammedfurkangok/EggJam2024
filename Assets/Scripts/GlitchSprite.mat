@@ -39,7 +39,7 @@ Material:
     - _DispGlitchOn: 1
     - _DispIntensity: 0.09
     - _DispProbability: 0.05
-    - _GlitchInterval: 0.075
+    - _GlitchInterval: 0.04
     - _WrapDispCoords: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
