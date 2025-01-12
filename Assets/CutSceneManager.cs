@@ -21,6 +21,7 @@ public class CutSceneManager : MonoBehaviour
     public List<CutSceneThing> cutSceneThings;
     public TypewriterByCharacter typewriterByCharacter;
     private int currentCutSceneIndex = 0;
+    public AudioSource audioSource;
 
     public void Start()
     {
@@ -62,5 +63,7 @@ public class CutSceneManager : MonoBehaviour
     {
         typewriterByCharacter.ShowText(cutSceneThing.text);
         cutSceneThing.image?.gameObject.SetActive(true);
+        if(audioSource.isPlaying) audioSource.Stop();
+        audioSource.PlayOneShot(cutSceneThing.sound);
     }
 }
