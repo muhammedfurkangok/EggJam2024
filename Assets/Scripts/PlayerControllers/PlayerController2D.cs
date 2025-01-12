@@ -100,6 +100,7 @@ public class PlayerController2D : MonoBehaviour
     {
         _isDashing = true;
         canAttack = true; // Dash sırasında saldırı aktif
+        _animator.SetTrigger("isDashing");
 
         // Mouse pozisyonunu al ve dash yönünü hesapla
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -37,10 +37,11 @@ public class Enemy : MonoBehaviour
         agent.speed = speed;
         _animator.SetBool("isWalking", true);
 
-        while (true && isAlive)
-        {
+        while (true) { 
+        
+            if(!isAlive) break;
+            if(agent) agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
             await UniTask.WaitForSeconds(0.2f);
-            agent.SetDestination(new Vector3(target.position.x, target.position.y, transform.position.z));
             HandleFlip();
         }
     }
@@ -61,11 +62,11 @@ public class Enemy : MonoBehaviour
     {
         _animator.SetBool("isWalking", false);
         _animator.SetTrigger("Die");
-        agent.isStopped = true;
-        agent.enabled = false;
         isAlive = false;
         ShadowFixOnDeath();
         GetComponent<Collider2D>().enabled = false;
+        agent.isStopped = true;
+        agent.enabled = false;
     }
 
     private void ShadowFixOnDeath()
