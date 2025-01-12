@@ -33,16 +33,13 @@ public class MoveAroundObject : MonoBehaviour
         _rotationY += mouseX;
         _rotationX += mouseY;
 
-        // Apply clamping for x rotation 
         _rotationX = Mathf.Clamp(_rotationX, _rotationXMinMax.x, _rotationXMinMax.y);
 
         Vector3 nextRotation = new Vector3(_rotationX, _rotationY);
 
-        // Apply damping between rotation changes
         _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
         transform.localEulerAngles = _currentRotation;
 
-        // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
     }
 }

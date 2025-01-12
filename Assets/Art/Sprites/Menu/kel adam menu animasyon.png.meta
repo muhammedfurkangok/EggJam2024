@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a934e78c9eeff994d90b889ce72501dc
+guid: 0b4899b2714883344b33367ebbf1dcf0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 128
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Faruk walk Left 3d_0
+      name: kel adam menu animasyon_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d972253b9b4daa4b94ea061d19d1f80
-      internalID: 22937039
+      spriteID: 52e405614f773ff4ebd20194543f26d2
+      internalID: 159525414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_1
+      name: kel adam menu animasyon_1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 128
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +134,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 926d3a1820b89cd4cb70e7660bab4321
-      internalID: -1893001317
+      spriteID: fe81495a773a71b469bcd5872239253f
+      internalID: 129789448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_2
+      name: kel adam menu animasyon_2
       rect:
         serializedVersion: 2
-        x: 73
+        x: 256
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66f9980f427ccd345ad8221bd1a75f45
-      internalID: -2089400730
+      spriteID: 5fd04388eb9c18744af121108278e4be
+      internalID: -660099245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_3
+      name: kel adam menu animasyon_3
       rect:
         serializedVersion: 2
-        x: 105
+        x: 384
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eeadbf73f4b48f4692eb1deed057e46
-      internalID: 465089469
+      spriteID: 610732194889a8644b82b81e50800589
+      internalID: 1766219307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_4
+      name: kel adam menu animasyon_4
       rect:
         serializedVersion: 2
-        x: 137
+        x: 512
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 714ba44182ee8dc4dae5111aa6abb850
-      internalID: 1867171432
+      spriteID: 79e946f50ada7d54e8326db7c99d1cda
+      internalID: -1558331119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_5
+      name: kel adam menu animasyon_5
       rect:
         serializedVersion: 2
-        x: 169
+        x: 640
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,20 +222,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7ac86c5613d2594c878b27d1a62fa65
-      internalID: 2018998756
+      spriteID: c3331490e55a24547ab342165228e8b1
+      internalID: -120105076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_6
+      name: kel adam menu animasyon_6
       rect:
         serializedVersion: 2
-        x: 201
+        x: 768
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae0d143136aa9fc43a1782af6f6be0fa
-      internalID: -1608346592
+      spriteID: a5382e00182dcc143abf801dcb2152e8
+      internalID: -1917680520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_7
+      name: kel adam menu animasyon_7
       rect:
         serializedVersion: 2
-        x: 233
+        x: 896
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 601ebf71e16f75a4f99736823d22fd1c
-      internalID: 1499773968
+      spriteID: c7eaf5565ac4139479d951dfcde8a923
+      internalID: 1861833734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_8
+      name: kel adam menu animasyon_8
       rect:
         serializedVersion: 2
-        x: 265
+        x: 1024
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,20 +288,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1503f43550143f746958ae69d2d38667
-      internalID: 2126265467
+      spriteID: f3070ec52cfbec946aa6f636cc22e2bf
+      internalID: -2079411821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk walk Left 3d_9
+      name: kel adam menu animasyon_9
       rect:
         serializedVersion: 2
-        x: 297
+        x: 1152
         y: 0
-        width: 14
-        height: 31
+        width: 128
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,8 +310,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdeb386a282cabc4da37b764e2c8cda3
-      internalID: 1674364817
+      spriteID: 34805fd4c8733b7469d57c90fed5be6b
+      internalID: 258917962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kel adam menu animasyon_10
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 128
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03342ff972d618b4a807da33e6cd1a92
+      internalID: -573297661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kel adam menu animasyon_11
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 128
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b180a2ca4ace54a95f9f7814c26376
+      internalID: -1371658045
       vertices: []
       indices: 
       edges: []
@@ -320,7 +364,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e0e8d78811c7ac948bf00a4868195aaa
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -330,16 +374,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Faruk walk Left 3d_0: 22937039
-      Faruk walk Left 3d_1: -1893001317
-      Faruk walk Left 3d_2: -2089400730
-      Faruk walk Left 3d_3: 465089469
-      Faruk walk Left 3d_4: 1867171432
-      Faruk walk Left 3d_5: 2018998756
-      Faruk walk Left 3d_6: -1608346592
-      Faruk walk Left 3d_7: 1499773968
-      Faruk walk Left 3d_8: 2126265467
-      Faruk walk Left 3d_9: 1674364817
+      kel adam menu animasyon_0: 159525414
+      kel adam menu animasyon_1: 129789448
+      kel adam menu animasyon_10: -573297661
+      kel adam menu animasyon_11: -1371658045
+      kel adam menu animasyon_2: -660099245
+      kel adam menu animasyon_3: 1766219307
+      kel adam menu animasyon_4: -1558331119
+      kel adam menu animasyon_5: -120105076
+      kel adam menu animasyon_6: -1917680520
+      kel adam menu animasyon_7: 1861833734
+      kel adam menu animasyon_8: -2079411821
+      kel adam menu animasyon_9: 258917962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,6 +19,14 @@ public class SequenceManagerForSurvivors : MonoBehaviour
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         });
+
+        glitchCountDown();
+    }
+
+    private async void glitchCountDown()
+    {
+        await UniTask.WaitForSeconds(30);
+        GiveErrorGlitch();
     }
 
     private void Update()
@@ -33,10 +42,8 @@ public class SequenceManagerForSurvivors : MonoBehaviour
         SoundManager.Instance.PlayErrorSound();
         errorScreen.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f)
             .OnComplete(() =>
-            {
+            {   
                 playerController2D.isGlitch = true;
-                canvasGroup.interactable = true;
-                canvasGroup.blocksRaycasts = true;
             });
     }
 

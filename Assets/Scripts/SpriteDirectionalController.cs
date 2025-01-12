@@ -1,51 +1,58 @@
-using System;
 using UnityEngine;
 
 public class SpriteDirectionalController : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-    [SerializeField] Transform mainTransform;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Camera customCamera;
+    public Animator animator;
+    public Transform characterTransform;
+    public float speedThreshold = 0.1f;
+
+    private Vector3 lastPosition;
+
+    private void Start()
+    {
+        lastPosition = transform.position;
+    }
 
     private void LateUpdate()
     {
-        if (customCamera == null)
+        // Kamera yönünü al
+        Vector3 camForward = Camera.main.transform.forward;
+        camForward.y = 0;
+
+        // Karakterin bakış yönünü al
+        Vector3 characterForward = characterTransform.forward;
+
+        // İki yön arasındaki açıyı hesapla
+        float angle = Vector3.SignedAngle(characterForward, camForward, Vector3.up);
+
+        // Blend Tree parametrelerini ayarla
+        if (angle > -45 && angle <= 45)
         {
-            Debug.LogError("Veuillez assigner la caméra dans l'inspector.");
-            return;
+            animator.SetFloat("moveX", 0);
+            animator.SetFloat("moveY", 1);
+        }
+        else if (angle > 45 && angle <= 135)
+        {
+            animator.SetFloat("moveX", 1);
+            animator.SetFloat("moveY", 0);
+        }
+        else if (angle > -135 && angle <= -45)
+        {
+            animator.SetFloat("moveX", -1);
+            animator.SetFloat("moveY", 0);
+        }
+        else
+        {
+            animator.SetFloat("moveX", 0);
+            animator.SetFloat("moveY", -1);
         }
 
-        Vector3 camForwardVector = new Vector3(customCamera.transform.forward.x, 0f, customCamera.transform.forward.z);
+        // Karakterin hızını hesapla
+        // Karakterin hızını hesapla
+        float speed = (transform.position - lastPosition).magnitude / Time.deltaTime;
+        lastPosition = transform.position;
 
-        // Calcul de l'angle entre la direction de la caméra et le vecteur "vers l'avant" de l'objet
-        float signedAngle = Vector3.SignedAngle(camForwardVector, mainTransform.forward, Vector3.up);
-
-        Vector2 animationDirection = Vector2.zero;
-
-        if (signedAngle >= -45f && signedAngle < 45f)
-        {
-            // Vue de face
-            animationDirection = new Vector2(0f, -1f);
-        }
-        else if (signedAngle >= 45f && signedAngle < 135f)
-        {
-            // Vue de gauche
-            animationDirection = new Vector2(1f, 0f);
-        }
-        else if ((signedAngle >= 135f && signedAngle <= 180f) || (signedAngle >= -180f && signedAngle < -135f))
-        {
-            // Vue de dos
-            animationDirection = new Vector2(0f, 1f);
-        }
-        else if (signedAngle >= -135f && signedAngle < -45f)
-        {
-            // Vue de droite
-            animationDirection = new Vector2(-1f, 0f);
-        }
-
-        // Appliquer la direction d'animation
-        animator.SetFloat("moveX", animationDirection.x);
-        animator.SetFloat("moveY", animationDirection.y);
+// Speed parametresini ayarla
+        animator.SetFloat("speed", speed > speedThreshold ? speed : -1);
     }
 }

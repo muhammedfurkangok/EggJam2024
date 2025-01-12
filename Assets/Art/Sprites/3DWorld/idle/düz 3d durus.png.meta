@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c31a42d1018c6045ae6185f77d32d7c
+guid: e9714ce7afd1ff343bb751ba6633d283
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -97,11 +97,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Faruk Front walk 3d-Sheet_0
+      name: "d\xFCz 3d durus_0"
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
+        x: 23
+        y: 15
         width: 16
         height: 32
       alignment: 0
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b441d4bb05375454da76726b8c5d2813
-      internalID: -524268690
+      spriteID: 650e490cad73dcf47bd8d91b50a184c1
+      internalID: 1753635234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Faruk Front walk 3d-Sheet_1
+      name: "d\xFCz 3d durus_1"
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
+        x: 92
+        y: 14
         width: 16
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,74 +134,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4f03b374bf0f844daafccb4eb7f1b61
-      internalID: 1923518394
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Faruk Front walk 3d-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f598466638e4b24687f91d0530e7ed5
-      internalID: -756668535
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Faruk Front walk 3d-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0569fd9aaedc6d4eb3a8226b40239a6
-      internalID: 860334872
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Faruk Front walk 3d-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 119198a67c92fb748be06dd6e25c8651
-      internalID: -1188799668
+      spriteID: df0aa81603ec7d04d8cc6158beda3e11
+      internalID: -1016833645
       vertices: []
       indices: 
       edges: []
@@ -210,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e0ff7143e61bbeb4c8182d27ef927629
+    spriteID: 65e667f4d94950b4c9736b3ec5e2e2bd
     internalID: 0
     vertices: []
     indices: 
@@ -220,11 +154,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Faruk Front walk 3d-Sheet_0: -524268690
-      Faruk Front walk 3d-Sheet_1: 1923518394
-      Faruk Front walk 3d-Sheet_2: -756668535
-      Faruk Front walk 3d-Sheet_3: 860334872
-      Faruk Front walk 3d-Sheet_4: -1188799668
+      "d\xFCz 3d durus_0": 1753635234
+      "d\xFCz 3d durus_1": -1016833645
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
