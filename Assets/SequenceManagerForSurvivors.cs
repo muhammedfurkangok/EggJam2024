@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SequenceManagerForSurvivors : MonoBehaviour
@@ -42,6 +43,6 @@ public class SequenceManagerForSurvivors : MonoBehaviour
 
     public void GlitchyErrorOkayButton()
     {
-        canvasGroup.DOFade(1, 0.5f);
+        canvasGroup.DOFade(1, 2.5f).OnComplete(() => { SceneManager.LoadScene("SecondDesktopScene"); });
     }
 }

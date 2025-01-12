@@ -51,6 +51,12 @@ MonoBehaviour:
   - key: 0
     clip: {fileID: 8300000, guid: 5df41e9c90ab71046b3c011329051759, type: 3}
     externalAudioSource: {fileID: 0}
+  - key: 2
+    clip: {fileID: 8300000, guid: d39e955d6b0ace44d9934f8ac7f7e384, type: 3}
+    externalAudioSource: {fileID: 0}
+  - key: 3
+    clip: {fileID: 8300000, guid: 50a32c004a80aef439f5faac0e37add5, type: 3}
+    externalAudioSource: {fileID: 0}
   randomSounds:
   - key: 1
     clip: {fileID: 8300000, guid: bf68f22d1837c7b4e873c10dbcf48913, type: 3}

@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: cb646d232fc63b64292dab2c5ed9f4ae
   - enabled: 1
-    path: Assets/Scenes/SecondDesktopScene.unity
-    guid: 5df274e68e373df4a97e14048420db83
+    path: Assets/Scenes/MainDesktopScene.unity
+    guid: bb405f0e42fb0a147b7ae89c3a28124c
   - enabled: 1
     path: Assets/Scenes/SurvivorsScene.unity
     guid: 773f53e33b691a146b980b80c52576b6
+  - enabled: 1
+    path: Assets/Scenes/SecondDesktopScene.unity
+    guid: 5df274e68e373df4a97e14048420db83
   - enabled: 1
     path: Assets/Scenes/PuzzleScene.unity
     guid: 8f1d4b0e15a19a2468727dae3bb6f8f1
