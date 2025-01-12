@@ -11,15 +11,20 @@ public class ZombieSpawnManager : MonoBehaviour
 
     private float _nextSpawnTime;
 
+    private bool spawn = true;
     [SerializeField]private Transform player;
+    [SerializeField]private SequenceManagerForSurvivors
+        sequenceManagerForSurvivors;
 
     private void Start()
     {
         _nextSpawnTime = Time.time + spawnRate;
+        sequenceManagerForSurvivors.OnErrorGlitch += () => { spawn = false; };
     }
 
     private void Update()
     {
+        if(!spawn) return;
         if (Time.time > _nextSpawnTime)
         {
             SpawnZombie();
