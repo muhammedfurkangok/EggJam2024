@@ -19,6 +19,7 @@ public class PlayerController2D : MonoBehaviour
     public GameObject hitParticlePrefab;
     public LayerMask enemyLayer;
     public CinemachineCamera shakeCam;
+    public int dmg = 1;
 
     #endregion
 
@@ -33,7 +34,7 @@ public class PlayerController2D : MonoBehaviour
     [Header("ANIMATOR")] [SerializeField] private Animator _animator;
 
     private Rigidbody2D _rb;
-    private CapsuleCollider2D _capsuleCollider;
+    [SerializeField]private CapsuleCollider2D _capsuleCollider;
     private bool _isDashing;
     private bool _isMouseOver;
     public bool canFreeze = true;
@@ -176,7 +177,7 @@ public class PlayerController2D : MonoBehaviour
     {
         if (_isDashing && canAttack && enemyLayer == (enemyLayer | (1 << collision.gameObject.layer)))
         {
-            collision.GetComponent<IDamageable>()?.TakeDamage(1);
+            collision.GetComponent<IDamageable>()?.TakeDamage(dmg);
             ShakeCamera();
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
             GameObject hitParticle = Instantiate(hitParticlePrefab, collision.transform.position, Quaternion.identity);

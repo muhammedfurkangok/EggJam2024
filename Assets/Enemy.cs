@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         Health health = GetComponent<Health>();
+        health.health = UnityEngine.Random.Range(2,10);
         health.OnDeath += Dead;
     }
 
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
         _animator.SetBool("isWalking", false);
         _animator.SetTrigger("Die");
         agent.isStopped = true;
+        agent.enabled = false;
         isAlive = false;
         ShadowFixOnDeath();
         GetComponent<Collider2D>().enabled = false;
@@ -71,5 +73,10 @@ public class Enemy : MonoBehaviour
         shadow.gameObject.SetActive(false); // or strecth the shadow to accomodate.
     }
 
-  
+
+    public void SetPlayer(Transform player)
+    {
+        target = player.transform;
+    }
+
 }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ZombieSpawnManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class ZombieSpawnManager : MonoBehaviour
     public float minSpawnRate = 0.5f;
 
     private float _nextSpawnTime;
+
+    [SerializeField]private Transform player;
 
     private void Start()
     {
@@ -27,7 +30,7 @@ public class ZombieSpawnManager : MonoBehaviour
     private void SpawnZombie()
     {
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity);
+        Instantiate(zombiePrefab, spawnPoint.position, Quaternion.identity).GetComponent<Enemy>().SetPlayer(player);
 
         if (spawnRate > minSpawnRate)
         {
