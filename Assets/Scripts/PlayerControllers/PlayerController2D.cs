@@ -204,6 +204,8 @@ public class PlayerController2D : MonoBehaviour
             hitParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             bloodParticle.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
+            PlaySliceSound();
+
             Debug.Log("Enemy hit!");
             if (canFreeze)
                 await FreezeFrame();
@@ -242,6 +244,10 @@ public class PlayerController2D : MonoBehaviour
         _cinemachineImpulseSource.GenerateImpulse();
     }
 
+    private void PlaySliceSound()
+    {
+        SoundManager.Instance.PlayOneShotSound(SoundType.Slice);
+    }
     private void Aberrate()
     {
         Volume.sharedProfile.TryGet<ChromaticAberration>(out var component);

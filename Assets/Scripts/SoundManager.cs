@@ -8,6 +8,8 @@ public enum SoundType
     Key,
     Error,
     IncorretPassword,
+    Slice,
+    ZombieDeath
 }
 
 [Serializable]
@@ -75,5 +77,10 @@ public class SoundManager : MonoBehaviour
     public void PlayIncorrectPasswordSound()
     {
         PlayOneShotSound(SoundType.IncorretPassword);
+    }
+
+    public void PlayZombieDeathSound()
+    {
+        PlayOneShotSound(SoundType.ZombieDeath);
     }
 }

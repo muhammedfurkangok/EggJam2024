@@ -12785,6 +12785,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.data[3].key
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.data[4].key
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 86c9dfb645a97494b9df0f8d431afba3, type: 3}
+    - target: {fileID: 926312786888300469, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
+      propertyPath: gameSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e5a4ec9c62788d41be5e6a626d33317, type: 3}
     - target: {fileID: 6502845038372227220, guid: a1eec45c40ceaf3479fa5cc5905e9ef7, type: 3}
       propertyPath: m_Name
       value: AudioManager
