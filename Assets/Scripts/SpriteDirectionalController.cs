@@ -3,51 +3,49 @@ using UnityEngine;
 
 public class SpriteDirectionalController : MonoBehaviour
 {
-    public float backAngle = 65f;
-    public float sideAngle = 65f;
-    public Transform mainTransform;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
-
+    [SerializeField] Animator animator;
+    [SerializeField] Transform mainTransform;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Camera customCamera;
 
     private void LateUpdate()
     {
-        Vector3 camForwardVector = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z);
-        Debug.DrawRay(Camera.main.transform.position, camForwardVector * 5f, Color.magenta);
-
-        float signedAngle = Vector3.SignedAngle(mainTransform.forward, camForwardVector, Vector3.up);
-        Vector2 animationDirection = new Vector2(0f, -1f);
-
-        float angle = Mathf.Abs(signedAngle);
-
-        // This changes the side animation based on what side the camera is viewing the slime from
-        if (signedAngle < 0)
+        if (customCamera == null)
         {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
+            Debug.LogError("Veuillez assigner la caméra dans l'inspector.");
+            return;
         }
 
-        if (angle < backAngle)
+        Vector3 camForwardVector = new Vector3(customCamera.transform.forward.x, 0f, customCamera.transform.forward.z);
+
+        // Calcul de l'angle entre la direction de la caméra et le vecteur "vers l'avant" de l'objet
+        float signedAngle = Vector3.SignedAngle(camForwardVector, mainTransform.forward, Vector3.up);
+
+        Vector2 animationDirection = Vector2.zero;
+
+        if (signedAngle >= -45f && signedAngle < 45f)
         {
-            // Back animation
+            // Vue de face
             animationDirection = new Vector2(0f, -1f);
         }
-        else if (angle < sideAngle)
+        else if (signedAngle >= 45f && signedAngle < 135f)
         {
-            // Side animation, in this case, this is the right animation
-            animationDirection = new Vector2(0f, 0f);
+            // Vue de gauche
+            animationDirection = new Vector2(1f, 0f);
         }
-        else
+        else if ((signedAngle >= 135f && signedAngle <= 180f) || (signedAngle >= -180f && signedAngle < -135f))
         {
-            // Front animation
+            // Vue de dos
             animationDirection = new Vector2(0f, 1f);
         }
+        else if (signedAngle >= -135f && signedAngle < -45f)
+        {
+            // Vue de droite
+            animationDirection = new Vector2(-1f, 0f);
+        }
 
+        // Appliquer la direction d'animation
         animator.SetFloat("moveX", animationDirection.x);
         animator.SetFloat("moveY", animationDirection.y);
     }
-
 }
