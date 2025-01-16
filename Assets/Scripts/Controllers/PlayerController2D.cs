@@ -44,6 +44,7 @@ public class PlayerController2D : MonoBehaviour
     [Header("LINERENDERER")]
     [SerializeField] private TrailRenderer trailRenderer;
 
+    [Header("ADD CONDITIONAL HIT EFFECTS")] //add conditional hit effects such as when player kills last zombie in a wave, slow down time
 
     private Rigidbody2D _rb;
     [SerializeField]private CapsuleCollider2D _capsuleCollider;

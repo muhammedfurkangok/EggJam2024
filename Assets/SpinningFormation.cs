@@ -13,7 +13,7 @@ public class SpinningFormation : MonoBehaviour
     private float currentAngle;
     private const int MAX_OBJECTS = 8;
 
-    private void Start()
+    private void Start() 
     {
         // Initialize array
         spawnedObjects = new Transform[MAX_OBJECTS];

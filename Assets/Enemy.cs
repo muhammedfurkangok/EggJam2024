@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         health.OnDeath += Dead;
     }
 
-    private void OnGlitch()
+    private void OnGlitch() //Unused
     {
         agent.isStopped = true;
         _animator.enabled = false;
@@ -47,9 +47,11 @@ public class Enemy : MonoBehaviour
 
     private async void Update()
     {
-        if (Vector2.Distance(target.position, agent.transform.position) <= 0.8f)
+        if (!isAlive) return;
+        if (Vector2.Distance(target.position, agent.transform.position) <= 0.6f)
         {
             await Attack();
+            return;
         }
     }
     private void FixedUpdate()
@@ -101,6 +103,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && isAttacking)
         {
             other.GetComponent<Health>().TakeDamage(1);
+            return;
         }
     }
 
@@ -110,15 +113,15 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
         agent.isStopped = true; // Stop the agent
         agent.velocity = Vector3.zero; // Ensure no residual movement
-        _animator.SetBool("isAttacking", true);        
-        Debug.Log(_animator.GetBool("isAttacking"));
-        await UniTask.Delay(700); 
+        _animator.SetBool("isAttacking", true);
+
+        await UniTask.Delay(700);
+
         _animator.SetBool("isAttacking", false); 
         isAttacking = false; 
         agent.isStopped = false;
-        Debug.Log("attacked");
     }
 
-    public void EnableCollider() { Debug.Log("EnableCollider"); _attackCollider.enabled = true; Debug.Log(_animator.GetBool("isAttacking"));    }
-    public void DisableCollider() { Debug.Log("EnableCollider"); _attackCollider.enabled = false; Debug.Log(_animator.GetBool("isAttacking"));}
+    public void EnableCollider() =>  _attackCollider.enabled = true; 
+    public void DisableCollider() => _attackCollider.enabled = false;
 }
