@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player") && isAttacking)
         {
-            other.GetComponent<Health>().TakeDamage(1);
+            other.GetComponentInParent<Health>().TakeDamage(1);
             return;
         }
     }
@@ -120,6 +120,7 @@ public class Enemy : MonoBehaviour
         _animator.SetBool("isAttacking", false); 
         isAttacking = false; 
         agent.isStopped = false;
+        _attackCollider.enabled = false;
     }
 
     public void EnableCollider() =>  _attackCollider.enabled = true; 
